@@ -244,75 +244,251 @@
         // Basis Data Rekomendasi berdasarkan kategori cuaca
         const TIPS_DB = {
             'Cerah': {
-                'Kesehatan': ['Gunakan tabir surya (Sunscreen) SPF 30+', 'Minum air putih minimal 2-3 liter untuk mencegah dehidrasi', 'Gunakan kacamata hitam anti-UV jika keluar rumah'],
-                'Konsumsi': ['Air kelapa segar', 'Salad buah dingin (semangka, melon)', 'Jus jeruk atau jus lemon tanpa gula berlebih'],
-                'Lokasi Santai': ['Taman rindang dengan banyak pepohonan', 'Pantai atau pinggir danau terdekat', 'Ruangan ber-AC, mall atau perpustakaan kota', 'Kolam renang umum atau waterpark', 'Kafe bertema outdoor atau rooftop sore hari'],
-                'Kegiatan Seru': ['Berenang di kolam renang terbuka', 'Bersepeda di pagi/sore hari', 'Piknik santai di bawah pohon'],
+                'Kesehatan': [
+                    { text: 'Gunakan Sunscreen SPF 30+ atau lebih tinggi untuk mencegah risiko kanker kulit.', type: 'youtube', query: 'rekomendasi sunscreen SPF 50 terbaik' },
+                    { text: 'Minum minimal 3 liter air per hari, suhu panas dapat memicu dehidrasi tersembunyi.', type: 'tiktok', query: 'tips minum air putih 3 liter sehari' },
+                    { text: 'Pakai kacamata anti-UV saat berkendara untuk menjaga kesehatan retina.', type: 'youtube', query: 'cara memilih kacamata anti UV asli' },
+                    { text: 'Gunakan Aloe Vera Gel setelah beraktivitas outdoor untuk mendinginkan kulit (after-sun care).', type: 'tiktok', query: 'skincare routine setelah panas panasan' },
+                    { text: 'Waspada polusi UV: Hindari aktivitas fisik berat di luar ruangan pada jam 12:00 - 14:00.', type: 'youtube', query: 'bahaya olahraga siang hari' },
+                    { text: 'Kenakan pakaian berbahan katun atau linen yang menyerap keringat dan ramah lingkungan.', type: 'tiktok', query: 'outfit bahan linen musim panas' },
+                    { text: 'Lakukan olahraga kardio ringan (jogging/bersepeda) di pagi hari sebelum matahari terik.', type: 'youtube', query: 'morning jogging routine' },
+                    { text: 'Gunakan topi bertepi lebar (bucket hat) untuk melindungi wajah dan leher secara maksimal.', type: 'tiktok', query: 'rekomendasi bucket hat kekinian' },
+                    { text: 'Lindungi bibir dari pecah-pecah akibat panas dengan Lip Balm ber-SPF.', type: 'youtube', query: 'rekomendasi lip balm spf' },
+                    { text: 'Gunakan obat tetes mata pelumas ringan jika sering terpapar angin dan debu kering.', type: 'tiktok', query: 'cara atasi mata kering cuaca panas' }
+                ],
+                'Konsumsi': [
+                    { text: 'Air kelapa murni tanpa gula untuk menggantikan elektrolit tubuh yang hilang secara alami.', type: 'youtube', query: 'manfaat air kelapa murni' },
+                    { text: 'Salad buah dingin (semangka, melon, nanas) yang kaya akan kandungan air.', type: 'tiktok', query: 'resep salad buah segar' },
+                    { text: 'Jus jeruk atau Lemonade dingin dengan madu untuk asupan Vitamin C ekstra.', type: 'youtube', query: 'resep lemonade cafe' },
+                    { text: 'Infused water dengan irisan lemon dan daun mint untuk detoksifikasi harian.', type: 'tiktok', query: 'cara membuat infused water lemon mint' },
+                    { text: 'Smoothies berry atau mangga sebagai pengganti sarapan padat yang menyegarkan.', type: 'youtube', query: 'healthy mango smoothie recipe' },
+                    { text: 'Minuman Isotonik (buatan sendiri atau kemasan) jika Anda banyak berkeringat.', type: 'tiktok', query: 'resep minuman isotonik alami' },
+                    { text: 'Hindari kafein berlebih di siang hari karena bersifat diuretik (mempercepat dehidrasi).', type: 'youtube', query: 'efek samping kopi siang hari' },
+                    { text: 'Gelato atau es krim artisan rendah kalori untuk memanjakan diri di tengah hari.', type: 'tiktok', query: 'rekomendasi gelato enak' },
+                    { text: 'Asinan buah atau rujak dengan tingkat kepedasan sedang yang menyegarkan.', type: 'youtube', query: 'resep rujak buah segar' },
+                    { text: 'Sayuran rebus dengan protein ringan (Ayam Dada/Ikan) agar perut tidak terlalu begah.', type: 'tiktok', query: 'resep makanan sehat tidak begah' }
+                ],
+                'Lokasi Santai': [
+                    { text: 'Taman kota atau ruang terbuka hijau yang rindang.', type: 'maps', query: 'Taman kota' },
+                    { text: 'Pantai terdekat untuk menikmati angin laut.', type: 'maps', query: 'Pantai' },
+                    { text: 'Pusat perbelanjaan (Mall) ber-AC untuk window shopping nyaman.', type: 'maps', query: 'Mall' },
+                    { text: 'Perpustakaan daerah yang tenang dan sejuk.', type: 'maps', query: 'Perpustakaan' },
+                    { text: 'Kolam renang umum atau Waterpark.', type: 'maps', query: 'Kolam renang' },
+                    { text: 'Cafe dengan konsep Rooftop untuk nongkrong sore menjelang senja.', type: 'maps', query: 'Cafe rooftop' },
+                    { text: 'Pinggiran danau atau waduk untuk bersantai di bawah pohon.', type: 'maps', query: 'Danau' },
+                    { text: 'Museum atau Galeri Seni indoor.', type: 'maps', query: 'Museum' },
+                    { text: 'Hutan kota atau area agrowisata.', type: 'maps', query: 'Hutan kota' },
+                    { text: 'Gelanggang Olahraga (GOR) untuk menonton aktivitas lokal.', type: 'maps', query: 'Gelanggang olahraga' }
+                ],
+                'Kegiatan Seru': [
+                    { text: 'Bersepeda mengelilingi sudut kota (Urban Cycling) di sore hari.', type: 'youtube', query: 'vlog urban cycling sore hari' },
+                    { text: 'Piknik estetik bersama teman dengan membawa bekal dan kain piknik.', type: 'tiktok', query: 'ide piknik estetik' },
+                    { text: 'Berenang untuk melatih pernapasan dan mendinginkan suhu tubuh.', type: 'youtube', query: 'teknik dasar berenang' },
+                    { text: 'Fotografi arsitektur kota (Cityscape) atau menangkap momen Sunset.', type: 'tiktok', query: 'tips foto sunset pake hp' },
+                    { text: 'Mencuci kendaraan sendiri, hitung-hitung olahraga dan pasti cepat kering.', type: 'youtube', query: 'cara cuci mobil sendiri di rumah' },
+                    { text: 'Berkebun atau merawat tanaman hias (Urban Farming).', type: 'tiktok', query: 'tips merawat tanaman hias pemula' },
+                    { text: 'Mencuci sepatu putih yang sudah kotor agar kering merata di bawah sinar matahari.', type: 'youtube', query: 'cara mencuci sepatu putih agar tidak kuning' },
+                    { text: 'Olahraga santai seperti badminton atau frisbee di taman.', type: 'tiktok', query: 'main frisbee di taman' },
+                    { text: 'Berjalan kaki mengeksplorasi kuliner kaki lima (Street Food Walking Tour).', type: 'youtube', query: 'street food walking tour' },
+                    { text: 'Menjemur bantal dan kasur untuk membunuh tungau debu secara alami.', type: 'tiktok', query: 'manfaat menjemur kasur' }
+                ],
                 'Rencana Peluang Bisnis': [
-                    'Jasa cuci kendaraan panggilan (mobil/motor) - Pasti cepat kering dan laku keras.',
-                    'Membuka stand minuman dingin/es kelapa kekinian di titik keramaian.',
-                    'Penyewaan perlengkapan piknik & alat aktivitas outdoor (skuter, sepeda).',
-                    'Jasa perawatan taman dan landscaping untuk area perumahan.',
-                    'Jasa fotografi outdoor (pre-wedding, katalog produk UMKM) memanfaatkan cahaya alami.',
-                    'Event Organizer untuk kegiatan gathering atau kelas olahraga di taman (Yoga, Zumba).',
-                    'Dropship/penjualan online kacamata hitam, topi, dan produk skincare tabir surya.',
-                    'Jasa pembersihan AC dan instalasi panel surya skala rumahan.',
-                    'Bisnis dessert box, salad buah segar, atau es krim artisan delivery.',
-                    'Sewa lahan menjemur/pengeringan hasil panen komoditas (kopi, cengkeh, dll).'
+                    { text: 'Jasa cuci kendaraan (Steam Motor/Mobil) panggilan - Sangat laku saat cuaca terik.', type: 'youtube', query: 'ide bisnis cuci motor panggilan' },
+                    { text: 'Buka kedai minuman kekinian (Es Teh Jumbo, Kopi Susu, Kelapa Muda) di titik keramaian.', type: 'tiktok', query: 'ide jualan es teh jumbo pinggir jalan' },
+                    { text: 'Penyewaan perlengkapan piknik estetik, skuter listrik, atau sepeda untuk di taman.', type: 'youtube', query: 'bisnis sewa skuter listrik' },
+                    { text: 'Jasa perawatan taman (Landscaping) dan pemotongan rumput perumahan.', type: 'tiktok', query: 'peluang usaha potong rumput' },
+                    { text: 'Fotografi komersial luar ruangan (Pre-wedding, katalog produk UMKM) dengan cahaya natural.', type: 'youtube', query: 'behind the scene foto katalog outdoor' },
+                    { text: 'Dropship/Reseller produk Sunscreen, kacamata hitam, dan pakaian musim panas (Fashion Thrift).', type: 'tiktok', query: 'cara mulai bisnis thrift baju' },
+                    { text: 'Menjadi Event Organizer untuk acara outdoor (Bazar, Festival Musik Mini, Kelas Yoga).', type: 'youtube', query: 'cara membuat event organizer kecil' },
+                    { text: 'Jasa pembersihan AC rumah tangga - Permintaan melonjak saat cuaca panas.', type: 'tiktok', query: 'peluang bisnis cuci AC' },
+                    { text: 'Bisnis Dessert Box, Salad Buah, atau Es Krim Artisan berbasis Pre-Order (PO).', type: 'youtube', query: 'ide jualan salad buah premium' },
+                    { text: 'Jasa instalasi Panel Surya mini skala rumah tangga - Tren green energy masa kini.', type: 'tiktok', query: 'peluang usaha panel surya' }
                 ]
             },
             'Hujan': {
-                'Kesehatan': ['Sedia payung dan jas hujan', 'Konsumsi Vitamin C ekstra untuk menjaga imun', 'Jaga kehangatan tubuh untuk mencegah flu'],
-                'Konsumsi': ['Teh hangat, jahe, atau wedang ronde', 'Sup ayam atau makanan berkuah panas (mie rebus, bakso)', 'Gorengan hangat secukupnya'],
-                'Lokasi Santai': ['Cafe yang nyaman dengan alunan musik akustik', 'Di kamar sambil membaca buku/menonton', 'Restoran dalam mall (indoor)', 'Co-working space dengan fasilitas kopi gratis', 'Pusat kebugaran/Gym indoor'],
-                'Kegiatan Seru': ['Maraton film atau series favorit', 'Bermain board games bersama keluarga di rumah', 'Deep talk atau journaling santai'],
+                'Kesehatan': [
+                    { text: 'Konsumsi Vitamin C dan Zinc ekstra untuk menjaga imun dari virus flu.', type: 'youtube', query: 'pentingnya vitamin c dan zinc saat hujan' },
+                    { text: 'Jaga kehangatan tubuh, gunakan pakaian berlapis atau jaket tebal.', type: 'tiktok', query: 'outfit musim hujan' },
+                    { text: 'Segera mandi dan keramas jika kehujanan untuk mencegah hipotermia dan infeksi bakteri.', type: 'youtube', query: 'alasan harus mandi setelah kehujanan' },
+                    { text: 'Selalu sedia payung lipat yang kokoh atau jas hujan di dalam tas.', type: 'tiktok', query: 'rekomendasi payung lipat kokoh' },
+                    { text: 'Gunakan sepatu anti air atau pelindung sepatu berbahan silikon.', type: 'youtube', query: 'review cover sepatu anti air' },
+                    { text: 'Jaga sirkulasi udara di ruangan untuk mencegah jamur karena kelembapan tinggi.', type: 'tiktok', query: 'cara mencegah jamur di kamar' },
+                    { text: 'Perhatikan genangan air di sekitar rumah, lakukan gerakan 3M untuk mencegah Demam Berdarah (DBD).', type: 'youtube', query: 'cara mencegah nyamuk dbd di rumah' },
+                    { text: 'Konsumsi minuman herbal (jahe, sereh) untuk menghangatkan organ dalam.', type: 'tiktok', query: 'resep minuman jahe anget' },
+                    { text: 'Berhati-hati saat berjalan, gunakan alas kaki dengan sol karet anti-slip.', type: 'youtube', query: 'sepatu anti slip terbaik' },
+                    { text: 'Jaga kesehatan mental (Mental Health), cuaca mendung sering memicu Seasonal Affective Disorder (SAD).', type: 'tiktok', query: 'mengatasi bad mood saat hujan' }
+                ],
+                'Konsumsi': [
+                    { text: 'Mie rebus hangat dengan telur dan cabai iris (Comfort food di kala hujan).', type: 'youtube', query: 'resep indomie kuah tek tek' },
+                    { text: 'Wedang jahe, bandrek, atau bajigur untuk menghangatkan tenggorokan.', type: 'tiktok', query: 'resep wedang jahe sereh' },
+                    { text: 'Sup ayam sayuran kaya rempah untuk meningkatkan kekebalan tubuh.', type: 'youtube', query: 'resep sup ayam bening ala restoran' },
+                    { text: 'Gorengan hangat (Bakwan/Tempe Mendoan) dimakan bersama teh manis hangat.', type: 'tiktok', query: 'resep tempe mendoan renyah' },
+                    { text: 'Soto daging atau bakso kuah panas yang mengenyangkan.', type: 'youtube', query: 'resep soto ayam bening kuning' },
+                    { text: 'Cokelat panas (Hot Chocolate) kental menemani waktu bersantai.', type: 'tiktok', query: 'resep hot chocolate cafe' },
+                    { text: 'Dimsum panas atau siomay kukus hangat.', type: 'youtube', query: 'cara membuat dimsum ayam udang' },
+                    { text: 'Pisang rebus atau ubi kukus sebagai camilan sehat mengeyangkan.', type: 'tiktok', query: 'resep olahan ubi kukus' },
+                    { text: 'Susu jahe hangat sebelum tidur agar istirahat lebih pulas.', type: 'youtube', query: 'manfaat minum susu jahe' },
+                    { text: 'Hindari makanan terlalu berminyak yang dapat memicu radang tenggorokan.', type: 'tiktok', query: 'efek makan gorengan saat cuaca dingin' }
+                ],
+                'Lokasi Santai': [
+                    { text: 'Coffee shop berkonsep indoor atau bernuansa kayu yang hangat.', type: 'maps', query: 'Coffee shop cozy' },
+                    { text: 'Kamar tidur sendiri untuk me-time sambil menonton film.', type: 'maps', query: 'Kamar tidur' },
+                    { text: 'Restoran masakan berkuah (Shabu-shabu, Hotpot, Ramen).', type: 'maps', query: 'Restoran ramen' },
+                    { text: 'Co-working space untuk bekerja terhindar dari hujan.', type: 'maps', query: 'Coworking space' },
+                    { text: 'Bioskop terdekat untuk maraton film layar lebar.', type: 'maps', query: 'Bioskop' },
+                    { text: 'Toko buku besar untuk membaca santai dengan nyaman.', type: 'maps', query: 'Toko buku' },
+                    { text: 'Pusat Kebugaran (Gym) indoor agar tetap bisa berolahraga.', type: 'maps', query: 'Gym fitness' },
+                    { text: 'Pusat Perbelanjaan (Mall) sebagai one-stop entertainment.', type: 'maps', query: 'Mall' },
+                    { text: 'Arena bermain indoor (Billiard, Bowling, Arcade).', type: 'maps', query: 'Tempat billiard' },
+                    { text: 'Pemandian air panas tertutup (jika tersedia).', type: 'maps', query: 'Pemandian air panas' }
+                ],
+                'Kegiatan Seru': [
+                    { text: 'Maraton menonton Netflix, drakor, atau series favorit di bawah selimut.', type: 'youtube', query: 'rekomendasi series netflix terbaru' },
+                    { text: 'Membaca buku fiksi atau self-development ditemani suara rintik hujan.', type: 'tiktok', query: 'rekomendasi buku self improvement' },
+                    { text: 'Bermain Board Games, Uno, atau Kartu bersama keluarga/teman di dalam rumah.', type: 'youtube', query: 'board game seru untuk keluarga' },
+                    { text: 'Deep Talk (bercerita mendalam) atau Journaling untuk refleksi diri.', type: 'tiktok', query: 'cara mulai journaling' },
+                    { text: 'Mencoba resep masakan baru (baking kue, memasak sup).', type: 'youtube', query: 'resep kue mudah tanpa oven' },
+                    { text: 'Merapikan kamar (Decluttering) dan mengatur ulang tata letak barang.', type: 'tiktok', query: 'tips decluttering kamar' },
+                    { text: 'Mendengarkan playlist musik akustik atau lofi-hiphop sambil bekerja/belajar.', type: 'youtube', query: 'lofi hip hop radio rainy' },
+                    { text: 'Bermain Video Games PC atau Konsol (PS/Nintendo).', type: 'tiktok', query: 'game multiplayer online seru' },
+                    { text: 'Merawat diri (Home Spa, luluran, maskeran).', type: 'youtube', query: 'rutinitas home spa' },
+                    { text: 'Menyusun rencana keuangan atau itinerary liburan berikutnya.', type: 'tiktok', query: 'cara membuat itinerary liburan' }
+                ],
                 'Rencana Peluang Bisnis': [
-                    'Layanan "Ojek Payung" premium atau jasa penjemputan mobil dari pintu ke pintu.',
-                    'Bisnis kuliner hangat (seblak, bakso, ramen) yang difokuskan pada pengiriman online (delivery).',
-                    'Jasa laundry ekspres dengan fasilitas mesin pengering (dryer) kapasitas besar.',
-                    'Penjualan jas hujan estetik, payung lipat kokoh, dan pelindung sepatu anti-air.',
-                    'Layanan kurir instan dengan tarif premium untuk dokumen darurat saat cuaca buruk.',
-                    'Jasa home-cleaning (sapu, pel, cuci piring) - Target orang yang malas keluar/bersih-bersih karena dingin.',
-                    'Sewa board game, konsol game (PS/Nintendo), atau buku untuk hiburan di dalam rumah.',
-                    'Jasa cuci helm, detailing mobil anti-karat, atau poles kaca mobil anti-jamur.',
-                    'Membuka kelas online, webinar, atau konsultasi jarak jauh (konsumen lebih suka diam di rumah).',
-                    'Jasa perbaikan atap bocor darurat dan inspeksi saluran air perumahan.'
+                    { text: 'Bisnis Cloud Kitchen (pesan-antar makanan/minuman berkuah, seblak, bakso).', type: 'youtube', query: 'ide bisnis cloud kitchen rumahan' },
+                    { text: 'Jasa Laundry Kilat yang memiliki mesin pengering (Dryer) industri - Pasti ramai.', type: 'tiktok', query: 'tips buka usaha laundry kiloan' },
+                    { text: 'Jual beli online (Dropship) Jas Hujan kekinian, payung lipat, dan cover sepatu.', type: 'youtube', query: 'bisnis dropship jas hujan' },
+                    { text: 'Jasa pengiriman dokumen atau barang kilat dengan tarif premium darurat hujan.', type: 'tiktok', query: 'peluang usaha kurir lokal' },
+                    { text: 'Layanan pembersihan rumah (Home Cleaning) untuk klien yang malas bebersih saat dingin.', type: 'youtube', query: 'cara memulai bisnis jasa kebersihan' },
+                    { text: 'Sewa konsol game (PS4/PS5) atau board games diantar ke rumah pelanggan.', type: 'tiktok', query: 'ide bisnis sewa ps' },
+                    { text: 'Layanan Ojek Payung VIP atau Jasa penjemputan mobil Valet di area publik.', type: 'youtube', query: 'peluang bisnis ojek mobil' },
+                    { text: 'Jasa perbaikan genteng bocor (Waterproofing) dan saluran air mampet.', type: 'tiktok', query: 'bisnis jasa anti bocor' },
+                    { text: 'Jasa cuci sepatu helm dan poles kaca mobil anti-jamur (Water Repellent).', type: 'youtube', query: 'cara bisnis cuci helm' },
+                    { text: 'Menjual perlengkapan rumah seperti karpet tebal, selimut bulu, dan pemanas air portabel.', type: 'tiktok', query: 'ide jualan perlengkapan tidur' }
                 ]
             },
             'Berawan': {
-                'Kesehatan': ['Waktu terbaik untuk olahraga luar ruangan tanpa kepanasan', 'Tetap bawa payung lipat untuk antisipasi hujan', 'Jaga kelembapan kulit'],
-                'Konsumsi': ['Kopi susu atau latte hangat', 'Camilan ringan seperti pastry atau roti bakar', 'Makanan berat yang mengenyangkan'],
-                'Lokasi Santai': ['Alun-alun kota atau fasilitas publik terbuka', 'Rooftop cafe (suasana syahdu)', 'Balkon rumah menikmati hembusan angin', 'Pasar seni atau ruang pameran semi-outdoor', 'Lintasan jogging/stadion kota'],
-                'Kegiatan Seru': ['Fotografi outdoor (cahaya merata/soft light)', 'Jogging santai atau jalan kaki di sore hari', 'Merapikan taman atau halaman rumah'],
+                'Kesehatan': [
+                    { text: 'Sangat cocok untuk olahraga outdoor karena terhindar dari paparan matahari langsung.', type: 'youtube', query: 'rutinitas olahraga luar ruangan' },
+                    { text: 'Tetap sedia payung lipat; cuaca berawan bisa tiba-tiba menjadi gerimis.', type: 'tiktok', query: 'payung lipat mini praktis' },
+                    { text: 'Gunakan pelembap kulit (Body Lotion), angin kencang berawan bisa membuat kulit kering.', type: 'youtube', query: 'rekomendasi body lotion melembapkan' },
+                    { text: 'Waktu yang tepat untuk jalan kaki santai (10.000 langkah) menurunkan kolesterol.', type: 'tiktok', query: 'manfaat jalan 10000 langkah' },
+                    { text: 'Lakukan peregangan (Stretching) ringan di teras rumah sambil menghirup udara segar.', type: 'youtube', query: 'stretching pagi hari 10 menit' },
+                    { text: 'Tetap gunakan Sunscreen, sinar UV tetap bisa menembus gumpalan awan.', type: 'tiktok', query: 'alasan pakai sunscreen saat mendung' },
+                    { text: 'Banyak konsumsi buah kaya vitamin C untuk mengantisipasi perubahan cuaca mendadak.', type: 'youtube', query: 'buah tinggi vitamin c' },
+                    { text: 'Latih pernapasan (Meditasi/Pranayama) memanfaatkan udara yang tidak terlalu panas.', type: 'tiktok', query: 'cara meditasi untuk pemula' },
+                    { text: 'Perhatikan kondisi udara, jika mendung kelabu disertai debu, gunakan masker.', type: 'youtube', query: 'bahaya polusi udara mendung' },
+                    { text: 'Hindari tidur siang terlalu lama karena cuaca mendung sering membuat badan semakin lemas.', type: 'tiktok', query: 'bahaya tidur siang kelamaan' }
+                ],
+                'Konsumsi': [
+                    { text: 'Kopi Susu Gula Aren atau Latte hangat untuk menaikkan mood.', type: 'youtube', query: 'resep kopi susu gula aren ala cafe' },
+                    { text: 'Roti bakar isi cokelat keju atau Pastry (Croissant) hangat.', type: 'tiktok', query: 'resep roti bakar teflon' },
+                    { text: 'Makanan berat seperti Nasi Padang atau Nasi Goreng Jawa.', type: 'youtube', query: 'resep nasi goreng jawa pinggir jalan' },
+                    { text: 'Teh Oolong atau Teh Hijau hangat ditemani camilan ringan.', type: 'tiktok', query: 'manfaat minum teh hijau' },
+                    { text: 'Siomay Bandung atau Batagor bumbu kacang pedas.', type: 'youtube', query: 'resep batagor bandung asli' },
+                    { text: 'Bubur kacang hijau atau ketan hitam.', type: 'tiktok', query: 'resep bubur kacang hijau empuk' },
+                    { text: 'Sate ayam atau sate taichan dengan lontong.', type: 'youtube', query: 'resep sate taichan senayan' },
+                    { text: 'Seblak jeletot atau cilok kuah pedas (jika berawan gelap/sejuk).', type: 'tiktok', query: 'resep seblak kuah pedas nampol' },
+                    { text: 'Makan di warteg dengan lauk tumis kangkung dan telur dadar krispi.', type: 'youtube', query: 'resep telur dadar warteg krispi' },
+                    { text: 'Ngemil martabak manis (terang bulan) bersama rekan kerja/keluarga.', type: 'tiktok', query: 'resep martabak manis teflon anti gagal' }
+                ],
+                'Lokasi Santai': [
+                    { text: 'Alun-alun kota atau public space (Taman Terbuka).', type: 'maps', query: 'Alun alun' },
+                    { text: 'Cafe dengan area semi-outdoor atau balkon.', type: 'maps', query: 'Cafe semi outdoor' },
+                    { text: 'Kawasan Kota Tua atau situs bersejarah (heritage).', type: 'maps', query: 'Tempat bersejarah' },
+                    { text: 'Pasar Seni atau sentra kerajinan tangan lokal.', type: 'maps', query: 'Pasar seni' },
+                    { text: 'Lintasan lari (Jogging track) di stadion kota.', type: 'maps', query: 'Jogging track' },
+                    { text: 'Food court luar ruangan / sentra jajanan kaki lima.', type: 'maps', query: 'Pusat kuliner street food' },
+                    { text: 'Balkon rumah atau gazebo taman sendiri.', type: 'maps', query: 'Taman' },
+                    { text: 'Kebun Binatang atau tempat wisata alam terbuka.', type: 'maps', query: 'Kebun Binatang' },
+                    { text: 'Taman bermain anak (Playground).', type: 'maps', query: 'Taman bermain anak' },
+                    { text: 'Tepi pelabuhan atau marina untuk melihat kapal.', type: 'maps', query: 'Pelabuhan' }
+                ],
+                'Kegiatan Seru': [
+                    { text: 'Fotografi potret atau modeling (Cuaca berawan adalah softbox raksasa ber-cahaya merata!).', type: 'youtube', query: 'tips fotografi cuaca mendung' },
+                    { text: 'Jalan-jalan mengeksplorasi gang/sudut kota (Walking Tour / City Stroll).', type: 'tiktok', query: 'city walking tour' },
+                    { text: 'Bermain sepatu roda (Roller Skate) atau Skateboard di taman.', type: 'youtube', query: 'belajar sepatu roda untuk pemula' },
+                    { text: 'Mengerjakan tugas/bekerja di cafe luar ruangan tanpa takut silau layar laptop.', type: 'tiktok', query: 'wfc cafe vibes' },
+                    { text: 'Terbang dengan drone untuk merekam sinematik lanskap kota (asal tidak hujan).', type: 'youtube', query: 'cinematic drone mendung' },
+                    { text: 'Wisata kuliner berburu jajanan pasar.', type: 'tiktok', query: 'rekomendasi jajanan pasar enak' },
+                    { text: 'Olahraga kelompok di luar (Basket 3x3, Futsal outdoor).', type: 'youtube', query: 'street basketball' },
+                    { text: 'Merapikan taman belakang, mencabut rumput liar tanpa kepanasan.', type: 'tiktok', query: 'tips merapikan taman rumah' },
+                    { text: 'Pergi thrift-shopping di pasar loak terbuka.', type: 'youtube', query: 'thrifting baju bekas brand' },
+                    { text: 'Mencuci motor sekadarnya, air lambat mengering sehingga tidak meninggalkan bercak water-spot.', type: 'tiktok', query: 'tips cuci motor agar mengkilap' }
+                ],
                 'Rencana Peluang Bisnis': [
-                    'Membuka stand street-food (jajanan pinggir jalan) karena cuaca mendukung orang berjalan-jalan.',
-                    'Jasa tur jalan kaki (walking tour) menelusuri sejarah kota/wisata lokal.',
-                    'Layanan fotografi dengan pencahayaan "soft-light" alami yang sempurna di cuaca berawan.',
-                    'Bisnis thrift shop (pakaian bekas layak pakai) atau pop-up market di area terbuka.',
-                    'Sewa sepeda santai atau skuter listrik keliling area publik/alun-alun.',
-                    'Jasa cuci sepatu premium (cepat kering terkena angin, tidak merusak bahan seperti matahari langsung).',
-                    'Menyelenggarakan event komunitas skala kecil (bazar, pertunjukan musik akustik).',
-                    'Jasa cuci karpet/sofa panggilan ke rumah.',
-                    'Jualan kopi keliling (starling) modern atau teh hangat di area keramaian publik.',
-                    'Jasa penyebaran brosur/flyer offline karena orang lebih banyak beraktivitas di luar tanpa kepanasan.'
+                    { text: 'Bisnis Street-Food (Jajanan pinggir jalan/Food Truck) - Orang lebih suka nongkrong di luar saat sejuk.', type: 'youtube', query: 'ide jualan street food kekinian' },
+                    { text: 'Membuka Jasa Walking Tour (Wisata jalan kaki) menelusuri sejarah lokal.', type: 'tiktok', query: 'bisnis walking tour lokal' },
+                    { text: 'Menawarkan Jasa Fotografi komersial, cuaca mendung adalah pencahayaan terbaik untuk fashion/produk.', type: 'youtube', query: 'bisnis fotografi fashion' },
+                    { text: 'Buka Thrift Shop (Pakaian Bekas) konsep Pop-up Market di taman atau area CFD.', type: 'tiktok', query: 'ide bisnis pop up market thrift' },
+                    { text: 'Penyewaan Skuter Listrik atau Sepeda Listrik (E-Bike) keliling alun-alun.', type: 'youtube', query: 'bisnis sewa sepeda listrik' },
+                    { text: 'Jasa cuci sepatu premium - Cepat kering diangin-anginkan tanpa merusak lem sepatu.', type: 'tiktok', query: 'peluang usaha cuci sepatu' },
+                    { text: 'Menjual Kopi Keliling (Starling) modern menggunakan sepeda kopi estetik.', type: 'youtube', query: 'bisnis kopi keliling modern' },
+                    { text: 'Membuka kursus sepatu roda atau skateboard untuk anak-anak di ruang publik.', type: 'tiktok', query: 'komunitas sepatu roda anak' },
+                    { text: 'Jasa sebar brosur offline - SPG/SPB lebih tahan lama berpromosi di luar saat cuaca mendukung.', type: 'youtube', query: 'tips SPG bagi brosur' },
+                    { text: 'Jasa cuci karpet/sofa panggilan ke rumah - Mengandalkan vakum pengering tanpa harus dijemur terik.', type: 'tiktok', query: 'ide bisnis cuci karpet panggilan' }
                 ]
             },
             'Dingin': {
-                'Kesehatan': ['Pakai jaket tebal atau pakaian berlapis', 'Gunakan pelembap kulit dan lip balm karena udara cenderung kering', 'Lakukan peregangan agar otot tidak kaku'],
-                'Konsumsi': ['Cokelat panas (Hot Chocolate)', 'Makanan pedas untuk menghangatkan badan', 'Susu hangat sebelum tidur'],
-                'Lokasi Santai': ['Pemandian air panas (jika ada di sekitar)', 'Ruang tamu dengan karpet tebal', 'Coffee shop dengan interior kayu (nuansa hangat)', 'Restoran keluarga bernuansa privat', 'Perpustakaan atau toko buku yang tenang'],
-                'Kegiatan Seru': ['Memasak atau baking kue di rumah', 'Merajut atau membuat kerajinan tangan', 'Bermain game konsol bersama teman'],
+                'Kesehatan': [
+                    { text: 'Pakai jaket tebal, pakaian rajut (knitwear), atau syal untuk mempertahankan panas tubuh.', type: 'tiktok', query: 'outfit knitwear musim dingin' },
+                    { text: 'Gunakan pelembap kulit intensif dan Lip Balm karena udara dingin cenderung sangat kering.', type: 'youtube', query: 'skincare cuaca dingin agar tidak kering' },
+                    { text: 'Lakukan peregangan (Warming up) lebih lama sebelum olahraga agar otot tidak kaku dan cedera.', type: 'tiktok', query: 'pemanasan sebelum olahraga dingin' },
+                    { text: 'Jaga telapak kaki tetap hangat dengan memakai kaus kaki tebal.', type: 'youtube', query: 'manfaat pakai kaus kaki saat tidur' },
+                    { text: 'Minum suplemen Vitamin D jika kurang mendapat sinar matahari beberapa hari.', type: 'tiktok', query: 'pentingnya vitamin D untuk tubuh' },
+                    { text: 'Hindari mandi dengan air terlalu panas karena dapat merusak lapisan minyak alami kulit.', type: 'youtube', query: 'bahaya mandi air terlalu panas' },
+                    { text: 'Konsumsi makanan berkalori cukup tinggi untuk membantu metabolisme pembakaran suhu tubuh.', type: 'tiktok', query: 'makanan tinggi kalori sehat' },
+                    { text: 'Gunakan Humidifier di dalam kamar untuk menjaga kelembapan udara pernapasan.', type: 'youtube', query: 'review humidifier terbaik' },
+                    { text: 'Rutin mencuci tangan untuk menghindari penularan virus flu yang lebih stabil di suhu dingin.', type: 'tiktok', query: 'cara cuci tangan WHO' },
+                    { text: 'Lakukan olahraga ringan di dalam ruangan (Yoga/Pilates) agar darah tetap lancar.', type: 'youtube', query: 'yoga 15 menit di rumah' }
+                ],
+                'Konsumsi': [
+                    { text: 'Makan hotpot, sukiyaki, atau steamboat kuah pedas bersama teman/keluarga.', type: 'youtube', query: 'resep kuah tomyam hotpot' },
+                    { text: 'Susu jahe hangat atau Matcha Latte panas.', type: 'tiktok', query: 'resep matcha latte hangat' },
+                    { text: 'Kari ayam atau gulai daging dengan rempah-rempah kuat penghangat badan.', type: 'youtube', query: 'resep kari ayam kuah kental' },
+                    { text: 'Soto Madura atau Sop Buntut yang kaya kaldu.', type: 'tiktok', query: 'resep sop buntut sapi empuk' },
+                    { text: 'Bubur ayam kuah kuning panas dimakan dengan sate usus.', type: 'youtube', query: 'resep bubur ayam kuah kuning' },
+                    { text: 'Camilan panggang seperti ubi Cilembu oven atau jagung bakar pedas manis.', type: 'tiktok', query: 'cara memanggang ubi cilembu madu' },
+                    { text: 'Oatmeal hangat dengan taburan kayu manis (cinnamon) dan madu.', type: 'youtube', query: 'resep oatmeal enak dan sehat' },
+                    { text: 'Ramen Jepang otentik dengan kuah kaldu toripaitan kental.', type: 'tiktok', query: 'rekomendasi ramen halal enak' },
+                    { text: 'Kembang tahu hangat dengan kuah jahe gula aren.', type: 'youtube', query: 'resep kembang tahu kuah jahe' },
+                    { text: 'Bandrek kelapa muda bakar (khas Sunda) yang super menghangatkan.', type: 'tiktok', query: 'resep bandrek kelapa bakar' }
+                ],
+                'Lokasi Santai': [
+                    { text: 'Pemandian air panas alam (Hot Spring).', type: 'maps', query: 'Pemandian air panas' },
+                    { text: 'Cafe atau restoran berkonsep kabin kayu ala pegunungan.', type: 'maps', query: 'Cafe nuansa kayu' },
+                    { text: 'Ruang tamu rumah yang dilengkapi karpet tebal berbulu.', type: 'maps', query: 'Toko karpet' },
+                    { text: 'Restoran All-You-Can-Eat (AYCE) BBQ grill atau Hotpot.', type: 'maps', query: 'Restoran All You Can Eat' },
+                    { text: 'Villa pegunungan atau tempat Glamping (Glamorous Camping).', type: 'maps', query: 'Glamping' },
+                    { text: 'Pusat Spa, Reflexology, atau Sauna tertutup.', type: 'maps', query: 'Tempat Spa Reflexology' },
+                    { text: 'Kedai minuman herbal, jamu modern, atau tea house.', type: 'maps', query: 'Kedai teh jamu' },
+                    { text: 'Lounge hotel dengan alunan musik jazz pelan.', type: 'maps', query: 'Hotel lounge' },
+                    { text: 'Toko buku atau perpustakaan bernuansa hangat (warm light).', type: 'maps', query: 'Toko Buku' },
+                    { text: 'Bioskop kelas premier yang memberikan fasilitas selimut.', type: 'maps', query: 'Bioskop premier' }
+                ],
+                'Kegiatan Seru': [
+                    { text: 'Membuat kue (Baking) atau memasak resep rumahan yang butuh waktu lama (Slow Cook).', type: 'youtube', query: 'resep baking kue coklat mudah' },
+                    { text: 'Merajut (Knitting) pakaian, syal, atau membuat kerajinan tangan Macrame.', type: 'tiktok', query: 'tutorial merajut pemula' },
+                    { text: 'Bermain game PC/Konsol, mabar online (Discord) bersama teman semalaman.', type: 'youtube', query: 'game co-op seru mabar' },
+                    { text: 'Spa mandiri di rumah: merendam kaki di air hangat campur garam epsom.', type: 'tiktok', query: 'cara merendam kaki garam epsom' },
+                    { text: 'Membaca novel fiksi misteri atau thriller di sudut ruangan yang sepi.', type: 'youtube', query: 'rekomendasi novel thriller terbaik' },
+                    { text: 'Menonton dokumenter alam atau sejarah yang tenang dan inspiratif.', type: 'tiktok', query: 'rekomendasi dokumenter netflix' },
+                    { text: 'Menyusun Puzzle 1000 keping bersama keluarga.', type: 'youtube', query: 'tips menyusun puzzle 1000 pieces' },
+                    { text: 'Melakukan Yoga Yin (Yoga lambat untuk fleksibilitas otot yang kaku).', type: 'tiktok', query: 'yin yoga pemula' },
+                    { text: 'Menata lemari pakaian (wardrobe), memisahkan baju tebal dan tipis.', type: 'youtube', query: 'tips menata lemari baju' },
+                    { text: 'Menghias jurnal (Scrapbooking) dengan tema vintage atau aesthetic.', type: 'tiktok', query: 'ide scrapbooking vintage' }
+                ],
                 'Rencana Peluang Bisnis': [
-                    'Penjualan jaket tebal, hoodie, pakaian rajut (knitwear), atau syal.',
-                    'Bisnis kedai minuman herbal, jamu modern, susu jahe, atau teh artisan hangat.',
-                    'Buka kedai makanan pedas/berkuah seperti hotpot, sukiyaki, atau soto hangat.',
-                    'Jasa pijat relaksasi panggilan (home spa) dengan minyak esensial penghangat.',
-                    'Penjualan perlengkapan tidur (selimut tebal bulu, bantal pemanas, kaus kaki tebal).',
-                    'Layanan catering "comfort food" masakan rumahan untuk pekerja kantoran.',
-                    'Bisnis penjualan atau penyewaan room-heater (pemanas ruangan) atau humidifier portabel.',
-                    'Membuka kelas kerajinan tangan indoor (merajut, melukis, merangkai bunga).',
-                    'Jasa servis atau instalasi alat pemanas air (water heater) rumah tangga.',
-                    'Penyewaan perlengkapan "glamping" atau camping khusus untuk cuaca dingin/pegunungan.'
+                    { text: 'Bisnis fashion musim dingin (Jaket tebal, Hoodie, Knitwear, Syal, Kupluk).', type: 'youtube', query: 'cara mulai bisnis clothing line hoodie' },
+                    { text: 'Buka kedai restoran spesialis kuah kaldu/hotpot dan makanan pedas berlevel.', type: 'tiktok', query: 'ide jualan seblak prasmanan' },
+                    { text: 'Menjual perlengkapan rumah seperti selimut bulu tebal, bantal pemanas, dan karpet.', type: 'youtube', query: 'bisnis dropship perlengkapan rumah' },
+                    { text: 'Bisnis minuman herbal kemasan, susu jahe bubuk, atau artisan tea online.', type: 'tiktok', query: 'ide bisnis artisan tea' },
+                    { text: 'Jasa pijat panggilan (Home Spa/Reflexology) dengan minyak esensial penghangat (Aromaterapi).', type: 'youtube', query: 'peluang bisnis spa panggilan' },
+                    { text: 'Layanan katering "Comfort Food" (masakan rumahan hangat) khusus untuk pekerja kantoran.', type: 'tiktok', query: 'ide bisnis katering rumahan' },
+                    { text: 'Penjualan atau penyewaan alat pemanas ruangan (Room Heater) dan Humidifier Estetik.', type: 'youtube', query: 'bisnis jualan humidifier' },
+                    { text: 'Membuka kelas/workshop kerajinan tangan indoor (merajut, melukis keramik, tufting).', type: 'tiktok', query: 'ide bisnis workshop tufting' },
+                    { text: 'Penyewaan perlengkapan kemping mewah (Glamping) yang proper untuk suhu ekstrem.', type: 'youtube', query: 'bisnis sewa alat camping' },
+                    { text: 'Jasa teknisi/instalasi Pemanas Air (Water Heater) untuk rumah tangga modern.', type: 'tiktok', query: 'peluang usaha pasang water heater' }
                 ]
             }
         };
@@ -447,21 +623,34 @@
 
             for (const [title, items] of Object.entries(tips)) {
                 let liHTML = items.map(item => {
-                    let mapsLink = '';
-                    // Jika kategori adalah 'Lokasi Santai', tambahkan tombol Google Maps
-                    if (title === 'Lokasi Santai') {
-                        const query = encodeURIComponent(`${item} terdekat di ${APP_STATE.locationName}`);
-                        mapsLink = `<a href="https://www.google.com/maps/search/?api=1&query=${query}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full mt-1.5 hover:bg-emerald-200 hover:shadow-sm transition-all no-print" title="Cari lokasi terdekat di Google Maps">
-                            <i class="fas fa-location-arrow"></i> Cari di Maps
-                        </a>`;
+                    let actionLink = '';
+                    let text = typeof item === 'string' ? item : item.text;
+
+                    if (typeof item === 'object') {
+                        if (item.type === 'maps') {
+                            const query = encodeURIComponent(`${item.query} terdekat di ${APP_STATE.locationName}`);
+                            actionLink = `<a href="https://www.google.com/maps/search/?api=1&query=${query}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full mt-1.5 hover:bg-emerald-200 hover:shadow-sm transition-all no-print" title="Cari lokasi terdekat di Google Maps">
+                                <i class="fas fa-location-arrow"></i> Maps
+                            </a>`;
+                        } else if (item.type === 'youtube') {
+                            const query = encodeURIComponent(item.query);
+                            actionLink = `<a href="https://www.youtube.com/results?search_query=${query}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] bg-red-100 text-red-700 px-2 py-0.5 rounded-full mt-1.5 hover:bg-red-200 hover:shadow-sm transition-all no-print" title="Cari referensi di YouTube">
+                                <i class="fab fa-youtube"></i> Referensi Youtube
+                            </a>`;
+                        } else if (item.type === 'tiktok') {
+                            const query = encodeURIComponent(item.query);
+                            actionLink = `<a href="https://www.tiktok.com/search?q=${query}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] bg-slate-800 text-white px-2 py-0.5 rounded-full mt-1.5 hover:bg-slate-900 hover:shadow-sm transition-all no-print" title="Cari referensi di TikTok">
+                                <i class="fab fa-tiktok"></i> Referensi TikTok
+                            </a>`;
+                        }
                     }
 
                     return `
                     <li class="flex items-start gap-2.5 text-sm text-slate-600 mb-3 pb-2 border-b border-black/5 last:border-0 last:pb-0 last:mb-0">
                         <i class="fas fa-check text-accent mt-1 text-xs shrink-0"></i> 
                         <div class="flex-1 leading-relaxed">
-                            <span>${item}</span>
-                            ${mapsLink ? `<div class="block">${mapsLink}</div>` : ''}
+                            <span>${text}</span>
+                            ${actionLink ? `<div class="block">${actionLink}</div>` : ''}
                         </div>
                     </li>`;
                 }).join('');
@@ -542,14 +731,22 @@
             document.getElementById(`content-${tabName}`).classList.remove('hidden');
         }
 
-        // Fungsi Ekspor
+        // Fungsi Ekspor & Notifikasi
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-6 right-6 bg-slate-800 text-white px-6 py-3 rounded-xl shadow-2xl z-50 transition-opacity duration-300 flex items-center gap-3 border border-slate-700';
+            toast.innerHTML = `<i class="fas fa-info-circle text-accent"></i> <span class="font-medium">${message}</span>`;
+            document.body.appendChild(toast);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 3000);
+        }
+
         function exportToPDF() {
             window.print();
         }
 
         function exportToExcel() {
             if (!APP_STATE.weather.current) {
-                alert("Data belum siap diekspor.");
+                showToast("Sistem sedang memuat, data belum siap diekspor.");
                 return;
             }
 
@@ -582,7 +779,8 @@
             for (const [kategori, tipsArray] of Object.entries(APP_STATE.recommendations)) {
                 excelData.push([`Kategori: ${kategori}`]);
                 tipsArray.forEach((tip, index) => {
-                    excelData.push([` ${index + 1}.`, tip]);
+                    const tipText = typeof tip === 'object' ? tip.text : tip;
+                    excelData.push([` ${index + 1}.`, tipText]);
                 });
                 excelData.push([""]); // Spasi
             }
@@ -619,6 +817,7 @@
             // Unduh File
             const fileName = `TheDays_Cuaca_${APP_STATE.locationName}_${new Date().toISOString().split('T')[0]}.xlsx`;
             XLSX.writeFile(wb, fileName);
+            showToast("Berhasil mengekspor data ke Excel!");
         }
 
         // Start App
